@@ -1,0 +1,16 @@
+{
+  "initialization_bits":"0xAAAA",
+  "team_number":817,
+  "hour":12,
+  "minutes":47,
+  "seconds":12,
+  "split_seconds":43,
+  "latitude":39.7469,
+  "longitude":105.2108,
+  "altitude":910.76,
+  "pitch":1500,
+  "yaw":1500,
+  "roll":1500,
+  "speed":53,
+  "battery":75
+}

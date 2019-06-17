@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TabControl</class>
+ <widget class="QWidget" name="TabControl">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>787</width>
+    <height>499</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="2">
+    <widget class="WidgetALT" name="widgetALT" native="true"/>
+   </item>
+   <item row="0" column="0">
+    <widget class="WidgetADI" name="widgetADI" native="true"/>
+   </item>
+   <item row="3" column="0" colspan="3">
+    <widget class="QGroupBox" name="groupBox_4">
+     <property name="title">
+      <string>GroupBox</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="WidgetASI" name="widgetASI" native="true"/>
+   </item>
+   <item row="0" column="1">
+    <widget class="QGroupBox" name="groupBox_9">
+     <property name="title">
+      <string>GroupBox</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QWidget" name="widget" native="true"/>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>WidgetALT</class>
+   <extends>QWidget</extends>
+   <header>widgetalt.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>WidgetASI</class>
+   <extends>QWidget</extends>
+   <header>widgetasi.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>WidgetADI</class>
+   <extends>QWidget</extends>
+   <header>widgetadi.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
