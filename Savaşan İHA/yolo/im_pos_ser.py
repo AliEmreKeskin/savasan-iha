@@ -5,6 +5,7 @@ import socket
 import threading
 import zmq
 import base64
+import sys
 
 def get_output_layers(net):    
     layer_names = net.getLayerNames()    
@@ -35,12 +36,14 @@ initBB = None
 # camera init
 camera_visual_angle_horizontal=200
 camera_visual_angle_vertical=200/16*9
-cap=cv2.VideoCapture(0)
 
 # socket init
+#address=sys.argv[1]
+address="192.168.19.83"
 context = zmq.Context()
-footage_socket = context.socket(zmq.PUB)
-footage_socket.bind('tcp://*:5555')
+footage_socket = context.socket(zmq.SUB)
+footage_socket.connect('tcp://'+address+':5555')
+footage_socket.setsockopt_string(zmq.SUBSCRIBE, np.unicode(''))
 
 # Status init
 status="Detecting"
@@ -48,7 +51,12 @@ time1=timer()
 
 # Loop
 while(True):
-    ret, image = cap.read()
+
+    # Receive Frame
+    frame = footage_socket.recv_string()
+    img = base64.b64decode(frame)
+    npimg = np.fromstring(img, dtype=np.uint8)
+    image = cv2.imdecode(npimg, 1)
     Width = image.shape[1]
     Height = image.shape[0]
     cx=Width/2
@@ -152,17 +160,10 @@ while(True):
     file = open("command.txt", "w")
     file.write(servo_command+"\n")
 
-    # Sending Video
-    image = cv2.resize(image, (640, 480))
-    encoded, buffer = cv2.imencode('.jpg', image)
-    jpg_as_text = base64.b64encode(buffer)
-    footage_socket.send(jpg_as_text)
-
     # Showing Video
     cv2.imshow("object detection", image)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
 cv2.waitKey()    
-cap.release()
 cv2.destroyAllWindows()

@@ -5,7 +5,7 @@
     <ProjectGuid>0961f35d-2fcd-475f-bfd5-3d5a96517ba5</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>siha.py</StartupFile>
+    <StartupFile>im_pos_ser.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -23,21 +23,21 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="im_pos_ser.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="servo_client.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="servo_server.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="siha.py" />
     <Compile Include="viewer.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Interpreter Include="..\env\yoloenv\">
-      <Id>yoloenv1</Id>
-      <Version>3.6</Version>
-      <Description>yoloenv (Python 3.6 (64-bit))</Description>
-      <InterpreterPath>Scripts\python.exe</InterpreterPath>
-      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
-      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
-      <Architecture>X64</Architecture>
-    </Interpreter>
     <Interpreter Include="..\env\yoloenv\">
       <Id>yoloenv</Id>
       <Version>3.6</Version>
