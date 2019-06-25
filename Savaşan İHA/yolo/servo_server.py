@@ -1,5 +1,6 @@
 import socket
 import threading
+import time
 
 class ChatServer:
     sock=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
@@ -17,6 +18,7 @@ class ChatServer:
             file=open("command.txt","r")
             data=file.readline()
             file.close()
+            time.sleep(0.1)
             for connection in self.connections:
                 connection.send(bytes(data,'utf-8'))
 

@@ -34,12 +34,12 @@ tracker = None
 initBB = None
 
 # camera init
-camera_visual_angle_horizontal=200
-camera_visual_angle_vertical=200/16*9
+camera_visual_angle_horizontal=130
+camera_visual_angle_vertical=camera_visual_angle_horizontal/16*9
 
-# socket init
+# receiver socket init
 #address=sys.argv[1]
-address="192.168.19.83"
+address="192.168.43.238"
 context = zmq.Context()
 footage_socket = context.socket(zmq.SUB)
 footage_socket.connect('tcp://'+address+':5555')
@@ -53,7 +53,8 @@ time1=timer()
 while(True):
 
     # Receive Frame
-    frame = footage_socket.recv_string()
+    for i in range(5):
+        frame = footage_socket.recv_string()
     img = base64.b64decode(frame)
     npimg = np.fromstring(img, dtype=np.uint8)
     image = cv2.imdecode(npimg, 1)
@@ -64,6 +65,10 @@ while(True):
     scale = 0.00392
     angle_x=0
     angle_y=0
+    x1=0
+    y1=0
+    w1=0
+    h1=0
 
     # Detecting
     if(status=="Detecting"):
@@ -135,6 +140,10 @@ while(True):
         (success, box) = tracker.update(image)
         if success:
             (x, y, w, h) = [int(v) for v in box]
+            x1=x
+            y1=y
+            w1=w
+            h1=h
             cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), 2)
             bbcx=x+w/2
             bbcy=y+h/2
@@ -156,9 +165,16 @@ while(True):
             initBB=None
 
     # Controlling Servos
-    servo_command=str(angle_x)+";"+str(angle_y)
+    servo_command="#"+str(angle_x)+";"+str(angle_y)+"#"
     file = open("command.txt", "w")
-    file.write(servo_command+"\n")
+    file.write(servo_command)
+
+    ## Sending Video
+    ##cv2.imwrite("image.jpg",image)
+    ##image = cv2.resize(image, (640, 480))
+    #encoded, buffer = cv2.imencode('.jpg', image)
+    #jpg_as_text = base64.b64encode(buffer)
+    #footage_socket.send(jpg_as_text)
 
     # Showing Video
     cv2.imshow("object detection", image)

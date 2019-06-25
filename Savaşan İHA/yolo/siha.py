@@ -33,8 +33,8 @@ tracker = None
 initBB = None
 
 # camera init
-camera_visual_angle_horizontal=200
-camera_visual_angle_vertical=200/16*9
+camera_visual_angle_horizontal=130
+camera_visual_angle_vertical=camera_visual_angle_horizontal/16*9
 cap=cv2.VideoCapture(0)
 
 # socket init

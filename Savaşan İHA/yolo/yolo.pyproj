@@ -26,6 +26,15 @@
     <Compile Include="im_pos_ser.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="launcher.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="result_video_server.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="s.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="servo_client.py">
       <SubType>Code</SubType>
     </Compile>
@@ -47,6 +56,9 @@
       <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
       <Architecture>X64</Architecture>
     </Interpreter>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="requirements.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

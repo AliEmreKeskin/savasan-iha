@@ -9,7 +9,7 @@ import cv2
 address=sys.argv[1]
 context = zmq.Context()
 footage_socket = context.socket(zmq.SUB)
-footage_socket.connect('tcp://'+address+':5555')
+footage_socket.connect('tcp://'+address+':6666')
 footage_socket.setsockopt_string(zmq.SUBSCRIBE, np.unicode(''))
 
 while True:
